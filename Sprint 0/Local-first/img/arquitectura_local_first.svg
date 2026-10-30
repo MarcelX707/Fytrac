@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="650" viewBox="0 0 1040 650" role="img" aria-labelledby="title desc">
+  <title id="title">Arquitectura Local-First de Fytrac</title>
+  <desc id="desc">La aplicación de Fytrac funciona sobre SQLite local y sincroniza los cambios autorizados mediante PowerSync, la API de Fytrac y PostgreSQL central.</desc>
+  <defs>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#edf0f2" stroke-width="1"/>
+    </pattern>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7.5" refY="4.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0 0L9 4.5L0 9Z" fill="#263238"/>
+    </marker>
+    <marker id="arrowStart" markerWidth="9" markerHeight="9" refX="1.5" refY="4.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M9 0L0 4.5L9 9Z" fill="#263238"/>
+    </marker>
+    <style>
+      text { font-family: Inter, Arial, sans-serif; fill: #17212b; }
+      .panel { fill: #fff; stroke: #263238; stroke-width: 2; }
+      .component { fill: #fff; stroke: #263238; stroke-width: 1.8; }
+      .wire { fill: none; stroke: #263238; stroke-width: 2; marker-end: url(#arrow); }
+      .twoway { fill: none; stroke: #263238; stroke-width: 2; marker-start: url(#arrowStart); marker-end: url(#arrow); }
+      .panel-title { font-size: 18px; font-weight: 700; letter-spacing: 1px; }
+      .component-title { font-size: 18px; font-weight: 600; text-anchor: middle; }
+      .component-sub { font-size: 14px; fill: #52616b; text-anchor: middle; }
+      .edge-label { font-size: 14px; font-weight: 600; text-anchor: middle; paint-order: stroke; stroke: #fff; stroke-width: 7px; stroke-linejoin: round; }
+      .note { font-size: 15px; fill: #37474f; text-anchor: middle; }
+    </style>
+  </defs>
+
+  <rect width="1040" height="650" fill="#fff"/>
+  <rect width="1040" height="650" fill="url(#grid)"/>
+  <text x="520" y="43" text-anchor="middle" font-size="26" font-weight="700">Fytrac · Arquitectura Local-First</text>
+  <text x="520" y="68" text-anchor="middle" font-size="15" fill="#52616b">Operación offline en el dispositivo y sincronización segura con el servidor</text>
+
+  <rect class="panel" x="30" y="90" width="400" height="500" rx="32"/>
+  <text class="panel-title" x="230" y="128" text-anchor="middle">DISPOSITIVO</text>
+
+  <rect class="component" x="105" y="155" width="250" height="72" rx="16"/>
+  <text class="component-title" x="230" y="188">App Fytrac</text>
+  <text class="component-sub" x="230" y="210">cuentas · movimientos · presupuestos</text>
+
+  <path class="twoway" d="M230 235V291"/>
+
+  <rect class="component" x="105" y="300" width="250" height="82" rx="16"/>
+  <text class="component-title" x="230" y="336">PowerSync SDK</text>
+  <text class="component-sub" x="230" y="359">gestiona operaciones y sincronización</text>
+
+  <path class="twoway" d="M230 390V452"/>
+
+  <path class="component" d="M150 475C150 464 186 455 230 455C274 455 310 464 310 475V548C310 559 274 568 230 568C186 568 150 559 150 548Z"/>
+  <ellipse cx="230" cy="475" rx="80" ry="20" fill="#fff" stroke="#263238" stroke-width="1.8"/>
+  <text class="component-title" x="230" y="513">BD_Local</text>
+  <text class="component-sub" x="230" y="537">SQLite · uso offline</text>
+
+  <rect class="panel" x="610" y="90" width="400" height="500" rx="32"/>
+  <text class="panel-title" x="810" y="128" text-anchor="middle">SERVIDOR CENTRAL</text>
+
+  <rect class="component" x="685" y="155" width="250" height="72" rx="16"/>
+  <text class="component-title" x="810" y="188">API de Fytrac</text>
+  <text class="component-sub" x="810" y="210">autentica y valida operaciones</text>
+
+  <path class="wire" d="M810 231V287"/>
+  <text class="edge-label" x="864" y="267">persistencia</text>
+
+  <path class="component" d="M730 315C730 304 766 295 810 295C854 295 890 304 890 315V394C890 405 854 414 810 414C766 414 730 405 730 394Z"/>
+  <ellipse cx="810" cy="315" rx="80" ry="20" fill="#fff" stroke="#263238" stroke-width="1.8"/>
+  <text class="component-title" x="810" y="351">BD_SV</text>
+  <text class="component-sub" x="810" y="376">PostgreSQL</text>
+
+  <path class="wire" d="M810 416V466"/>
+  <text class="edge-label" x="865" y="447">cambios confirmados</text>
+
+  <rect class="component" x="685" y="475" width="250" height="72" rx="16"/>
+  <text class="component-title" x="810" y="506">PowerSync Service</text>
+  <text class="component-sub" x="810" y="529">filtra y distribuye datos permitidos</text>
+
+  <path class="wire" d="M355 320H465V191H685"/>
+  <text class="edge-label" x="560" y="178">sube operaciones</text>
+
+  <path class="wire" d="M685 510H515V355H355"/>
+  <text class="edge-label" x="560" y="499">baja datos autorizados</text>
+
+  <text class="note" x="520" y="625">La base local permite trabajar offline; PostgreSQL conserva el estado central confirmado.</text>
+</svg>
